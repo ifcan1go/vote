@@ -88,7 +88,7 @@ def verifyProxyList():
     '''
     requestHeader = {
         'User-Agent': "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36"}
-    myurl = 'http://www.baidu.com/'
+    myurl = 'https://rp.shixiseng.com/'
 
     while True:
         lock.acquire()
@@ -113,18 +113,18 @@ def verifyProxyList():
 
 
 if __name__ == '__main__':
-    tmp = open('proxy.txt' , 'w')
-    tmp.write("")
-    tmp.close()
-
-    proxynum = getProxyList("http://www.xicidaili.com/nn/")
-    print (u"国内高匿：" + str(proxynum))
-    proxynum = getProxyList("http://www.xicidaili.com/nt/")
-    print (u"国内透明：" + str(proxynum))
-    proxynum = getProxyList("http://www.xicidaili.com/wn/")
-    print (u"国外高匿：" + str(proxynum))
-    proxynum = getProxyList("http://www.xicidaili.com/wt/")
-    print (u"国外透明：" + str(proxynum))
+    # tmp = open('proxy.txt' , 'w')
+    # tmp.write("")
+    # tmp.close()
+    #
+    # proxynum = getProxyList("http://www.xicidaili.com/nn/")
+    # print (u"国内高匿：" + str(proxynum))
+    # proxynum = getProxyList("http://www.xicidaili.com/nt/")
+    # print (u"国内透明：" + str(proxynum))
+    # proxynum = getProxyList("http://www.xicidaili.com/wn/")
+    # print (u"国外高匿：" + str(proxynum))
+    # proxynum = getProxyList("http://www.xicidaili.com/wt/")
+    # print (u"国外透明：" + str(proxynum))
 
     print(u"\n验证代理的有效性：")
 
