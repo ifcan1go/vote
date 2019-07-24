@@ -5,8 +5,7 @@ from bs4 import BeautifulSoup
 import requests
 import threading
 
-num_thread=10
-
+num_thread = 64
 url = 'https://hrapi.shixiseng.com/api/rp/participant/vote?participant_uuid=rp_geuervsvynmi'
 headers = {'Accept': 'application/json, text/plain, */*',
            'Accept-Encoding': 'gzip, deflate, br',
@@ -48,15 +47,18 @@ def get_proxy():
 
 
 def vote(proxy):
-    for j in range(10):
+    for j in range(20):
+        global correct_count
         r = requests.get(url=url, headers=headers, proxies=proxy)
         random_wait_time = random.random() * 2
         time.sleep(random_wait_time)
         now = get_vote_num(proxy)
-        print(proxy,"当前票数：", now)
-
+        print(proxy, "当前票数：", now)
+        if r.json()['data'] == 200:
+            correct_count = correct_count + 1
 
 if __name__ == "__main__":
+    correct_count = 0
     ip_lists = get_proxy()
     max_vote = len(ip_lists)
     begin_num = get_vote_num()
@@ -68,7 +70,7 @@ if __name__ == "__main__":
             t = threading.Thread(target=vote, args=(ip_lists[nn * num_thread + i],))
             threads.append(t)
         for i in range(min(num_thread, max_vote - nn * num_thread)):
-            t=threads[i]
+            t = threads[i]
             t.start()
         for i in range(min(num_thread, max_vote - nn * num_thread)):
             t = threads[i]
@@ -76,4 +78,4 @@ if __name__ == "__main__":
         random_wait_time = random.random() * 10
         time.sleep(random_wait_time)
     now = get_vote_num()
-    print("当前票数：", now, "成功投票：", now - begin_num)
+    print(correct_count,"当前票数：", now, "成功投票：%s", now - begin_num)

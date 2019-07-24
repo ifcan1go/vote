@@ -113,23 +113,23 @@ def verifyProxyList():
 
 
 if __name__ == '__main__':
-    # tmp = open('proxy.txt' , 'w')
-    # tmp.write("")
-    # tmp.close()
-    #
-    # proxynum = getProxyList("http://www.xicidaili.com/nn/")
-    # print (u"国内高匿：" + str(proxynum))
-    # proxynum = getProxyList("http://www.xicidaili.com/nt/")
-    # print (u"国内透明：" + str(proxynum))
-    # proxynum = getProxyList("http://www.xicidaili.com/wn/")
-    # print (u"国外高匿：" + str(proxynum))
-    # proxynum = getProxyList("http://www.xicidaili.com/wt/")
-    # print (u"国外透明：" + str(proxynum))
+    tmp = open('proxy.txt' , 'w')
+    tmp.write("")
+    tmp.close()
+
+    proxynum = getProxyList("http://www.xicidaili.com/nn/")
+    print (u"国内高匿：" + str(proxynum))
+    proxynum = getProxyList("http://www.xicidaili.com/nt/")
+    print (u"国内透明：" + str(proxynum))
+    proxynum = getProxyList("http://www.xicidaili.com/wn/")
+    print (u"国外高匿：" + str(proxynum))
+    proxynum = getProxyList("http://www.xicidaili.com/wt/")
+    print (u"国外透明：" + str(proxynum))
 
     print(u"\n验证代理的有效性：")
 
     all_thread = []
-    for i in range(30):
+    for i in range(100):
         t = threading.Thread(target=verifyProxyList)
         all_thread.append(t)
         t.start()
